@@ -56,7 +56,7 @@ SI_Symbol::SI_Symbol(Schematic& schematic, const SExpression& node) :
     }
     mPosition = Point(node.getChildByPath("pos"));
     mRotation = node.getValueByPath<Angle>("rot", true);
-    Uuid symbVarItemUuid = node.getValueByPath<Uuid>("lib_item", true);
+    Uuid symbVarItemUuid = node.getValueByPath<Uuid>("lib_gate", true);
     init(symbVarItemUuid);
 }
 
@@ -189,7 +189,7 @@ void SI_Symbol::serialize(SExpression& root) const
 
     root.appendToken(mUuid);
     root.appendTokenChild("component", mComponentInstance->getUuid(), true);
-    root.appendTokenChild("lib_item", mSymbVarItem->getUuid(), true);
+    root.appendTokenChild("lib_gate", mSymbVarItem->getUuid(), true);
     root.appendChild(mPosition.serializeToDomElement("pos"), true);
     root.appendTokenChild("rot", mRotation, false);
 }
