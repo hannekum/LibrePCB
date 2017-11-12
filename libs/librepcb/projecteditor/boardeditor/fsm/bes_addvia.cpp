@@ -28,7 +28,6 @@
 #include <librepcb/project/boards/items/bi_via.h>
 #include <librepcb/common/gridproperties.h>
 #include <librepcb/common/undostack.h>
-#include <librepcb/project/boards/cmd/cmdboardviaadd.h>
 #include <librepcb/project/boards/cmd/cmdboardviaedit.h>
 #include <librepcb/project/project.h>
 #include <librepcb/project/circuit/circuit.h>
@@ -284,11 +283,11 @@ bool BES_AddVia::addVia(Board& board) noexcept
     {
         mUndoStack.beginCmdGroup(tr("Add via to board"));
         mUndoCmdActive = true;
-        CmdBoardViaAdd* cmdAdd = new CmdBoardViaAdd(board, Point(0, 0), mCurrentViaShape,
-            mCurrentViaSize, mCurrentViaDrillDiameter, mCurrentViaNetSignal);
-        mUndoStack.appendToCmdGroup(cmdAdd);
-        mCurrentVia = cmdAdd->getVia();
-        mEditCmd.reset(new CmdBoardViaEdit(*mCurrentVia));
+        //CmdBoardViaAdd* cmdAdd = new CmdBoardViaAdd(board, Point(0, 0), mCurrentViaShape,
+        //    mCurrentViaSize, mCurrentViaDrillDiameter, mCurrentViaNetSignal);
+        //mUndoStack.appendToCmdGroup(cmdAdd);
+        //mCurrentVia = cmdAdd->getVia();
+        //mEditCmd.reset(new CmdBoardViaEdit(*mCurrentVia));
         return true;
     }
     catch (Exception& e)
@@ -310,11 +309,11 @@ bool BES_AddVia::updateVia(Board& board, const Point& pos) noexcept
 
     try
     {
-        mEditCmd->setPosition(pos, true);
-        mEditCmd->setShape(mCurrentViaShape, true);
-        mEditCmd->setSize(mCurrentViaSize, true);
-        mEditCmd->setDrillDiameter(mCurrentViaDrillDiameter, true);
-        mEditCmd->setNetSignal(mCurrentViaNetSignal, true); // can throw
+        //mEditCmd->setPosition(pos, true);
+        //mEditCmd->setShape(mCurrentViaShape, true);
+        //mEditCmd->setSize(mCurrentViaSize, true);
+        //mEditCmd->setDrillDiameter(mCurrentViaDrillDiameter, true);
+        //mEditCmd->setNetSignal(mCurrentViaNetSignal, true); // can throw
         return true;
     }
     catch (Exception& e)
@@ -330,10 +329,10 @@ bool BES_AddVia::fixVia(const Point& pos) noexcept
 
     try
     {
-        mEditCmd->setPosition(pos, false);
-        mUndoStack.appendToCmdGroup(mEditCmd.take());
-        mUndoStack.commitCmdGroup();
-        mUndoCmdActive = false;
+        //mEditCmd->setPosition(pos, false);
+        //mUndoStack.appendToCmdGroup(mEditCmd.take());
+        //mUndoStack.commitCmdGroup();
+        //mUndoCmdActive = false;
         return true;
     }
     catch (Exception& e)

@@ -73,8 +73,8 @@ BoardViaPropertiesDialog::BoardViaPropertiesDialog(Project& project, BI_Via& via
     foreach (NetSignal* netsignal, mProject.getCircuit().getNetSignals()) {
         mUi->cbxNetSignal->addItem(netsignal->getName());
     }
-    QString netsignal = mVia.getNetSignal() ? mVia.getNetSignal()->getName() : "";
-    mUi->cbxNetSignal->setCurrentText(netsignal);
+    //QString netsignal = mVia.getNetSignal() ? mVia.getNetSignal()->getName() : "";
+    //mUi->cbxNetSignal->setCurrentText(netsignal);
     mUi->cbxNetSignal->model()->sort(0);
 }
 
@@ -129,7 +129,7 @@ bool BoardViaPropertiesDialog::applyChanges() noexcept
                                Length::fromMm(mUi->spbxPosY->value())), false);
         cmd->setSize(Length::fromMm(mUi->spbxSize->value()), false);
         cmd->setDrillDiameter(Length::fromMm(mUi->spbxDrillDiameter->value()), false);
-        cmd->setNetSignal(netsignal, false); // can throw
+        //cmd->setNetSignal(netsignal, false); // can throw
         mUndoStack.execCmd(cmd.take());
         return true;
     }
