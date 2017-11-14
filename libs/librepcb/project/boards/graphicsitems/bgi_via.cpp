@@ -76,7 +76,7 @@ void BGI_Via::updateCacheAndRepaint() noexcept
 {
     prepareGeometryChange();
 
-    setToolTip(mVia.getNetSignal() ? mVia.getNetSignal()->getName() : QString());
+    //setToolTip(mVia.getNetSignal() ? mVia.getNetSignal()->getName() : QString());
 
     mViaLayer = getLayer(GraphicsLayer::sBoardViasTht);
     mTopStopMaskLayer = getLayer(GraphicsLayer::sTopStopMask);
@@ -105,7 +105,7 @@ void BGI_Via::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, Q
     Q_UNUSED(option);
     Q_UNUSED(widget);
 
-    NetSignal* netsignal = mVia.getNetSignal();
+    NetSignal* netsignal = nullptr;//mVia.getNetSignal();
     bool highlight = mVia.isSelected() || (netsignal && netsignal->isHighlighted());
 
     if (mDrawStopMask && mBottomStopMaskLayer && mBottomStopMaskLayer->isVisible()) {
